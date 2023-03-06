@@ -1,4 +1,5 @@
 # Key-Holding-Macro
-This seems useless but fantastic macro
+쓸모없어 보이지만 적어도 키보드에 동전을 올려두는 일은 없어집니다 !
 
-#### Optimized for ONLY Window 10 & Window 11
+#### 해당 프로그램은 윈도우 10, 11에 최적화돼있습니다.
+
