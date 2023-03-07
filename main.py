@@ -6,8 +6,6 @@
 #
 #
 
-
-
 from tkinter import messagebox, ttk
 from tendo import singleton
 try:
@@ -32,7 +30,7 @@ except SystemExit as e:
 root:object = tk.Tk()
 app:object
 app_title:str = "Key Holding Macro"
-app_size:tuple = (250,125)
+app_size:tuple = (350,170)
 window_info:str = ""
 simplified:bool = True
 
@@ -40,7 +38,7 @@ simplified:bool = True
 class MainApp:
     
     def __init__(self, master):
-        global simplified, key_input_label
+        global simplified
 
         # Basic Variables
         self.master = master
@@ -52,28 +50,35 @@ class MainApp:
         self.X = int(self.master.winfo_screenwidth()/2 - app_size[0]/2)
         self.Y = int(self.master.winfo_screenheight()/2 - app_size[1]/2)
         self.master.wm_geometry(f"{app_size[0]}x{app_size[1]}+{self.X}+{self.Y}")
-        self.master.minsize(120, 100)
+        self.master.minsize(250, 150)
+        self.master.maxsize(700, 220)
+        self.master.resizable(True,False)
         self.master.bind("<Key>", self.key_press)
 
-        self.window_combobox = ttk.Combobox(self.master, width = 40, postcommand = lambda:self.update_cb_list(simplified), state='readonly')
+        self.upper_frame = tk.Frame(width=100, relief="sunken",bd=1)
+        self.upper_frame.pack(side="top",fill="both",padx=5,ipadx=2,pady=5,ipady=2)
+        self.lower_frame = tk.Frame(width=100, height=110, relief="sunken",bd=1)
+        self.lower_frame.pack(side="bottom",fill="both",padx=5,ipadx=2,pady=5,ipady=2,expand=True)
+
+        self.window_combobox = ttk.Combobox(self.upper_frame, width = 40, postcommand = lambda:self.update_cb_list(simplified), state='readonly')
         self.window_combobox.set("Pick a Window")
-        self.window_combobox.pack(fill="x",padx=3,pady=1)
+        self.window_combobox.pack(fill="x",padx=3,pady=3,side="top")
         self.window_combobox.bind("<<ComboboxSelected>>",self.window_selected)
 
         self.check_var = tk.BooleanVar(value=True)
-        self.simplified_checkbutton = tk.Checkbutton(self.master, text='Simplified Window', variable=self.check_var, onvalue=True, offvalue=False)
-        self.simplified_checkbutton.bind("<ButtonRelease-1>",self.on_check_button_click)
-        self.simplified_checkbutton.pack(pady=3,side="top")
+        self.simplified_checkbutton = tk.Checkbutton(self.upper_frame, text='Simplified Window', variable=self.check_var, onvalue=True, offvalue=False, command=self.on_check_button_click)
+        # self.simplified_checkbutton.bind("<ButtonRelease-1>",self.on_check_button_click)
+        self.simplified_checkbutton.pack(pady=2)
         print(self.check_var.get())
 
-        self.show_key = tk.Label(self.master, text="<Press any key to hold>", bg='gray19', fg='snow')
-        self.show_key.pack()
+        self.show_key = tk.Label(self.lower_frame, text="<Press any key to hold>", bg='gray19', fg='snow')
+        self.show_key.pack(pady=5)
 
-        self.send_button = tk.Button(self.master, text="Hold Key", command=self.button_pressed)
+        self.send_button = tk.Button(self.lower_frame, text="Hold Key", command=self.button_pressed, takefocus=False)
         self.send_button.pack(pady=3)
 
-        self.ro_textbox = ttk.Label(master, text=' ')
-        self.ro_textbox.pack()
+        self.ro_textbox = ttk.Label(self.lower_frame, text='',border=1,font=("Calibri",12,"bold"))
+        self.ro_textbox.pack(side="bottom")
 
     def update_cb_list(self, simplified):
         print("updt cb list", simplified)
@@ -91,7 +96,7 @@ class MainApp:
 
         self.window_combobox['value'] = self.values_list
     
-    def on_check_button_click(self, event):
+    def on_check_button_click(self):
         def update_check_var(): #To Avoid Firing two functional works
             print("Button Clicked")
             global simplified
@@ -129,25 +134,10 @@ class MainApp:
         print(window_info)
 
         if not self.key_pressed:
-            KeyToWindow.send_key_to_window(window_info, self.key_to_send, key_down=True)
-            self.key_pressed = True
-            wnd_check_thread.resume()
-            key_check_thread.resume()
-            self.window_combobox.config(state='disabled')
-            self.simplified_checkbutton.config(state='disabled')
-            self.ro_textbox.config(text='')
-            self.send_button.config(text="Release Key")
-            
-                
+            self.activate_button()
+                         
         else:
-            KeyToWindow.send_key_to_window(window_info, self.key_to_send, key_down=False)
-            self.key_pressed = False
-            wnd_check_thread.pause()
-            key_check_thread.pause()
-            self.window_combobox.config(state='normal')
-            self.simplified_checkbutton.config(state='normal')
-            self.ro_textbox.config(text='')
-            self.send_button.config(text="Hold Key")
+            self.deactivate_button()
     
     def SafeQuit(self, master:object = root) -> None:
         if messagebox.askokcancel(f"{app_title} Quit", f"Are you sure that you want to quit {app_title}?"):
@@ -157,13 +147,43 @@ class MainApp:
             master.destroy()
 
     def is_input_activating(self):
-        print("is_intput_activating executed")
+
         if getKeyPressing() == True:
-            print("is~~~ true")
             self.ro_textbox.config(text='Activating')
         else:
-            print("is~~~ false")
             self.ro_textbox.config(text='Not Activating')
+
+        self.is_hwnd_available()
+        
+    def is_hwnd_available(self):
+        global window_info
+
+        if not KeyToWindow.is_valid_window_info(window_info):
+            self.deactivate_button()
+
+    def activate_button(self):
+        global window_info
+
+        KeyToWindow.send_key_to_window(window_info, self.key_to_send, key_down=True)
+        self.key_pressed = True
+        wnd_check_thread.resume()
+        key_check_thread.resume()
+        self.window_combobox.config(state='disabled')
+        self.simplified_checkbutton.config(state='disabled')
+        self.ro_textbox.config(text='')
+        self.send_button.config(text="Release Key")
+    
+    def deactivate_button(self):
+        global window_info
+
+        KeyToWindow.send_key_to_window(window_info, self.key_to_send, key_down=False)
+        self.key_pressed = False
+        wnd_check_thread.pause()
+        key_check_thread.pause()
+        self.window_combobox.config(state='normal')
+        self.simplified_checkbutton.config(state='normal')
+        self.ro_textbox.config(text='')
+        self.send_button.config(text="Hold Key")
 
 #// Logics Threading
 class MyThread(threading.Thread):

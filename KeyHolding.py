@@ -75,7 +75,8 @@ class KeyToWindow:
     def is_valid_hwnd(hwnd) -> bool:
         # ERROR case
         if not win32gui.IsWindow(hwnd):
-            messagebox.showerror("ERROR","error code 2 : Window not found")
+            messagebox.showerror("ERROR","Window not found")
+
             return False
         
         return True
@@ -149,6 +150,7 @@ class MyThread(threading.Thread):
 def getKeyPressing() -> bool:
     global key_pressing
     return key_pressing
+
 if __name__ != '__main__':
     wnd_check_thread = MyThread()
     sleep(0.1)
