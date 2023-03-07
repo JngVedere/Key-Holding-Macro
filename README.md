@@ -11,33 +11,33 @@
 ## 1. HOW TO USE
 
 1. 창을 선택합니다.
-###### _Simplified Windows_ 가 체크된 경우 - 단순화된 창 목록을 보여줍니다.
+##### `Simplified Windows` 가 체크된 경우 - 단순화된 창 목록을 보여줍니다.
 <img src="https://user-images.githubusercontent.com/88299137/223338813-c06aec3f-f67b-45be-971e-1106f6e5ed75.gif" width="200" height="150">
 
-###### _Simplified Windows_ 가 체크되지 않은 경우 - 모든 창 목록을 보여줍니다.
+##### `Simplified Windows` 가 체크되지 않은 경우 - 모든 창 목록을 보여줍니다.
 <img src="https://user-images.githubusercontent.com/88299137/223339387-37b38542-9141-4ce9-b2c0-ee0da88d1f8d.gif" width="200" height="150">
 
 2. 원하는 키를 키보드로 입력합니다.
 <img src="https://user-images.githubusercontent.com/88299137/223340304-9307b619-9d06-42c2-979c-d216f91c1506.gif" width=200 height=150>
 
-3. _Hold Key_ 버튼을 누르면 키 홀딩을 시작합니다.
+3. `Hold Key` 버튼을 누르면 키 홀딩을 시작합니다.
 <img src="https://user-images.githubusercontent.com/88299137/223340736-3c3a065d-4826-4ce2-9087-6e7791ae573b.gif" width=200 height=150>
 
-4. 지정한 창이 활성화된 상태일 때 키 홀딩을 유지(=Activating)하고, 지정한 창이 비활성화되면 키 홀딩이 중단(=Not Activating)됩니다.
+4. 지정한 창이 활성화된 상태일 때 키 홀딩을 `Activating` 하고, 지정한 창이 비활성화되면 키 홀딩이 `Not Activating` 됩니다.
 <img src=https://user-images.githubusercontent.com/88299137/223341100-24443806-aa00-4525-905a-373771ca3e35.gif width=200 height=150>
 
-5. _Release Key_ 버튼을 누르면 키 홀딩을 종료하고 새로운 창을 선택할 수 있습니다.
+5. `Release Key` 버튼을 누르면 키 홀딩을 종료하고 새로운 창을 선택할 수 있습니다.
 <img src=https://user-images.githubusercontent.com/88299137/223343391-4e279c12-5373-4055-9794-fa523941041d.gif width=200 height=150>
 
 --------------
 
 ## 2. IN DETAIL
 ### USED MODULE
-+ Input Module : ClassDD by ddxoff
++ Input Module : `ClassDD` by ddxoff
   + Low-level hardware bitmap을 변경하여 실제 hardware input을 만들어냅니다.
-+ Window detection : Win32 & Pywinauto
++ Window detection : `Pywinin32` & `Pywinauto`
   + win에서만 동작하는 모듈입니다.
-+ GUI : tkinter
++ GUI : `tkinter`
   + Python built-in module입니다
 
 ### GUI
@@ -92,8 +92,8 @@
 ## 4. ADDITIONAL INFORMATION
 
 ### 4-1. IMPORTED MODULE(S)/FILE(S) REFERENCE
-1. ClassDD https://github.com/ddxoft/master by ddxoft
-2. XK_TO_DD.py https://github.com/JngVedere/XK_TO_DD created for myself
+1. `ClassDD` https://github.com/ddxoft/master by [ddxoft](https://github.com/ddxoft)
+2. `XK_TO_DD.py` https://github.com/JngVedere/XK_TO_DD created for myself
 
 ### 4-2. SUPPORTED KEY LIST
 ..UPDATING..
