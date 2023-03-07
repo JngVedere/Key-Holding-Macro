@@ -91,9 +91,9 @@
 
 ## 4. ADDITIONAL INFORMATION
 
-### 4-1. USED MODULE REFERENCE
+### 4-1. IMPORTED MODULE(S)/FILE(S) REFERENCE
 1. ClassDD https://github.com/ddxoft/master by ddxoft
 2. XK_TO_DD.py https://github.com/JngVedere/XK_TO_DD created for myself
 
 ### 4-2. SUPPORTED KEY LIST
-..UPDATING
+..UPDATING..
