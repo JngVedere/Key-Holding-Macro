@@ -15,7 +15,7 @@
 ## 2. IN DETAIL
 
 ## 3. GUI EXPLANATION
-##### ※ Images from v0.1.0
+##### ※ Images from v0.1.1
 
 
 ## 4. USED EXTERNAL MODULE
@@ -24,6 +24,7 @@
 2. XK_TO_DD.py https://github.com/JngVedere/XK_TO_DD created for myself
 
 ## 5. VERSION INFO
-[Download Latest Version](https://github.com/JngVedere/Key-Holding-Macro/releases/tag/v0.1.0)
+[Download Latest Version](https://github.com/JngVedere/Key-Holding-Macro/releases/tag/v0.1.1)
 
 v0.1.0 - RELEASED on 03-06-2023
+v0.1.1 - RELEASED on 03-07-2023
