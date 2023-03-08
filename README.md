@@ -33,7 +33,7 @@
 
 ## 2. IN DETAIL
 ### USED MODULE
-+ Input Module : `ClassDD` by ddxoff
++ Input Module : `ClassDD` by [ddxoff](https://github.com/ddxoft)
   + Low-level hardware bitmap을 변경하여 실제 hardware input을 만들어냅니다.
 + Window detection : `Pywinin32` & `Pywinauto`
   + win에서만 동작하는 모듈입니다.
@@ -84,8 +84,8 @@
 ## 3. VERSION INFO
 [Download Latest Version](https://github.com/JngVedere/Key-Holding-Macro/releases/tag/v0.1.1)
 
-+ v0.1.0 - RELEASED on 03-06-2023
-+ v0.1.1 - RELEASED on 03-07-2023
++ [v0.1.0](https://github.com/JngVedere/Key-Holding-Macro/releases/tag/v0.1.0) - RELEASED on 03-06-2023
++ [v0.1.1](https://github.com/JngVedere/Key-Holding-Macro/releases/tag/v0.1.1) - RELEASED on 03-07-2023
 
 --------------
 
